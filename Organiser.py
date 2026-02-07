@@ -35,7 +35,7 @@ def organise_folder(folder_path: str) -> None:
 
         # Skip if file already exists in the destination folder
         if os.path.exists(destination_path):
-            print(f"File {name} already exists in {ext} folder. Skipping.")
+            print(f"File {name} already exists in {ext} folder. \nSkipping.")
             skipped_file += 1
             continue
 
@@ -46,7 +46,7 @@ def organise_folder(folder_path: str) -> None:
         moved += 1
 
 
-    print(f"Done. Moved {moved} file(s). Skipped {skipped_file} file(s). Skipped {skipped} folder(s).")
+    print(f"Done. \nMoved {moved} file(s). \nSkipped {skipped_file} file(s). \nSkipped {skipped} folder(s).")
 
 
 if __name__ == "__main__":
