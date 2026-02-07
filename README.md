@@ -8,7 +8,7 @@ A simple Python script that organises files in a folder into subfolders based on
 
 ## How to run
 1. Clone the repo
-2. Run `python organiser.py`
+2. Run `python Organiser.py`
 3. Enter the folder path when prompted
 
 ## What I learned
