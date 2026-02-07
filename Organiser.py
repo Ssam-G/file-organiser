@@ -12,6 +12,7 @@ def organise_folder(folder_path: str) -> None:
 
     moved = 0
     skipped = 0
+    skipped_file = 0
 
     for name in items:
         full_path = os.path.join(folder_path, name)
@@ -21,7 +22,7 @@ def organise_folder(folder_path: str) -> None:
             skipped += 1
             continue
 
-        # Work out the file extension
+        # Get file extension
         _, ext = os.path.splitext(name)
         ext = ext.lower().strip(".")
 
@@ -30,17 +31,22 @@ def organise_folder(folder_path: str) -> None:
             ext = "no_extension"
 
         destination_folder = os.path.join(folder_path, ext)
+        destination_path = os.path.join(destination_folder, name)
+
+        # Skip if file already exists in the destination folder
+        if os.path.exists(destination_path):
+            print(f"File {name} already exists in {ext} folder. Skipping.")
+            skipped_file += 1
+            continue
 
         # Create the destination folder if it doesn't exist
         os.makedirs(destination_folder, exist_ok=True)
 
-        destination_path = os.path.join(destination_folder, name)
-
-        # Move the file
         shutil.move(full_path, destination_path)
         moved += 1
 
-    print(f"Done. Moved {moved} file(s). Skipped {skipped} folder(s).")
+
+    print(f"Done. Moved {moved} file(s). Skipped {skipped_file} file(s). Skipped {skipped} folder(s).")
 
 
 if __name__ == "__main__":
